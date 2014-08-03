@@ -1,0 +1,11 @@
+---
+
+php_repository: ppa:ondrej/php5
+
+php_install:
+  - php5
+
+php_configure:
+  - file: /etc/php5/cli/php.ini
+    values:
+      - { section: date, key: date.timezone, value: 'Europe/Paris' }

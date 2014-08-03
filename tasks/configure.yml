@@ -1,0 +1,13 @@
+---
+
+- name: Configure php.ini
+  ini_file:
+    dest="{{ item.0.file }}"
+    section="{{ item.1.section }}"
+    option="{{ item.1.key }}"
+    value="{{ item.1.value }}"
+    backup=yes
+  with_subelements:
+     - php_configure
+     - values
+  when: php_configure != false
