@@ -1,6 +1,18 @@
 ---
 
-- name: Configure php.ini
+- name: Add section for compatibility ini_file
+  lineinfile:
+    dest={{ item.0.file }}
+    state=present
+    regexp="(?i)^\[{{ item.1.section }}\]$"
+    insertbefore="BOF"
+    line="[{{ item.1.section }}]"
+  with_subelements:
+     - php_configure
+     - values
+  when: php_configure != false
+
+- name: Configure PHP ini
   ini_file:
     dest="{{ item.0.file }}"
     section="{{ item.1.section }}"

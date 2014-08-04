@@ -2,5 +2,7 @@
 
 - hosts: all
   sudo: true
+  vars_files:
+    - "{{ ansible_os_family }}.yml"
   roles:
     - { role: ../../ansible-role-php, tags: php }

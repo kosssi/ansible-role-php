@@ -1,14 +1,21 @@
 ---
 
-- name: Add repository to install last PHP version
+- name: Add repository to install last PHP version (APT).
   apt_repository:
     repo="{{ php_repository }}"
     update_cache=yes
-  when: php_repository != false
+  when: ansible_os_family == "Debian" and php_repository != false
 
-- name: Install packages.
+- name: Install PHP packages (APT).
   apt:
     pkg="{{ item }}"
     state=present
   with_items: php_install
-  when: php_install != false
+  when: ansible_os_family == "Debian" and php_install != false
+
+- name: Install PHP packages (YUM).
+  yum:
+    name={{ item }}
+    state=present
+  with_items: php_install
+  when: ansible_os_family == "RedHat" and php_install != false
