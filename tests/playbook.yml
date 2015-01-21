@@ -2,8 +2,11 @@
 
 - hosts: all
   sudo: true
+  vars:
+    - php_repository: ppa:ondrej/php5
   pre_tasks:
-    - apt: update_cache=yes
+    - name: Update cache for vagrant
+      apt: update_cache=yes
       when: ansible_ssh_user == 'vagrant'
   roles:
     - { role: ../../ansible-role-php, tags: php }
