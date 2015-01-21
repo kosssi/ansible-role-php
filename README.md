@@ -7,9 +7,18 @@ Install and configure PHP
 ## Role Defaults Variables
 
     php_repository: false
+    php_timezone: Europe/Paris
+
     php_install:
       - php5
-    php_configure: false
+
+    php_configure:
+      - file: /etc/php5/cli/php.ini
+        values:
+          - { section: date, key: date.timezone, value: '{{ php_timezone }}' }
+      - file: /etc/php5/apache2/php.ini
+        values:
+          - { section: date, key: date.timezone, value: '{{ php_timezone }}' }
 
 ## Exemple of configuration role
 
@@ -20,9 +29,10 @@ Install and configure PHP
     php_configure:
       - file: /etc/php5/cli/php.ini
         values:
-          - { section: date, key: date.timezone, value: 'Europe/Paris' }
+          - { section: date, key: date.timezone, value: '{{ php_timezone }}' }
       - file: /etc/php5/mods-available/xdebug.ini
         values:
+          - { section: date, key: date.timezone, value: '{{ php_timezone }}' }
           - { section: xdebug, key: xdebug.idekey, value: my-idekey }
 
 ## Example Playbook

@@ -10,7 +10,6 @@
   with_subelements:
      - php_configure
      - values
-  when: php_configure != false
 
 - name: Configure PHP ini
   ini_file:
@@ -22,4 +21,3 @@
   with_subelements:
      - php_configure
      - values
-  when: php_configure != false
