@@ -10,5 +10,5 @@
   apt:
     pkg="{{ item }}"
     state=present
-  with_items: php_install
+  with_items: "{{ php_install }}"
   when: php_install != false

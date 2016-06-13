@@ -8,7 +8,7 @@
     insertbefore="BOF"
     line="[{{ item.1.section }}]"
   with_subelements:
-     - php_configure
+     - "{{ php_configure }}"
      - values
 
 - name: Configure PHP ini
@@ -19,5 +19,5 @@
     value="{{ item.1.value }}"
     backup=yes
   with_subelements:
-     - php_configure
+     - "{{ php_configure }}"
      - values
