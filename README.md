@@ -20,7 +20,7 @@ Install and configure PHP
         values:
           - { section: date, key: date.timezone, value: '{{ php_timezone }}' }
 
-## Exemple of configuration role
+## Example of configuration role
 
     php_repository: ppa:ondrej/php5
     php_install:
